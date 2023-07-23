@@ -12,6 +12,18 @@ You can restrict the words by providing the `-hardmode` flag, to only allow vali
 
 You can specify a secret which will then be instantly solved in a non-interactive way by providing the `-secret <word>` flag.
 
+Example output:
+
+```bash
+➜ ./wordler -hardmode -secret crust
+Guess 1 is: "tares"
+Guess 2 is: "noisy"
+Guess 3 is: "blurt"
+Guess 4 is: "crust"
+won on attempt 4
+Time used: 2.24170733s
+```
+
 # bench
 
 To build the benchmark tool just run `go build` in the `bench` directory.
