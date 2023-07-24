@@ -16,6 +16,7 @@ import (
 func main() {
 	hardmode := flag.Bool("hardmode", false, "enable this to use only reduced set of words")
 	secret := flag.String("secret", "", "set a secret to be solved")
+	verbose := flag.Bool("verbose", false, "enables verbose logging of info")
 
 	flag.Parse()
 
@@ -66,7 +67,7 @@ func main() {
 	// Else play an interactive game.
 	reader := bufio.NewReader(os.Stdin)
 	for i := 1; ; i++ {
-		guess := algo.Guess(&possibles, &remaining, i, false)
+		guess := algo.Guess(&possibles, &remaining, i, *verbose)
 		fmt.Printf("Guess %d is: %q\n", i, guess)
 		fmt.Printf("Enter hint in short notation (g(reen) / y(ellow) / x(gray)), e.g. ggxyx: \n")
 		hint, err := reader.ReadString('\n')

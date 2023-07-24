@@ -2,6 +2,7 @@ package algo
 
 import (
 	"fmt"
+	"math"
 
 	"briemann.com/wordler/dict"
 	"briemann.com/wordler/rules"
@@ -100,7 +101,7 @@ func Guess(possibles *WordSet, remaining *[]string, attempt int, verbose bool) s
 
 	for a := 0; a < len(ValidGuesses); a++ {
 		guess := ValidGuesses[a]
-		avg := 0
+		avg := float64(0)
 		// TODO: reduce RemainingAmount calls
 		for r := 0; r < len(*remaining); r++ {
 			secret := (*remaining)[r]
@@ -111,13 +112,13 @@ func Guess(possibles *WordSet, remaining *[]string, attempt int, verbose bool) s
 
 			// Reduce possible remaining words.
 			Reduce(&possiblesTmp, guess, hint)
-			avg += RemainingAmount(&possiblesTmp, *remaining)
+			avg += float64(RemainingAmount(&possiblesTmp, *remaining))
 		}
 		// Calc the average for the input.
-		avg /= len(*remaining)
+		avg /= float64(len(*remaining))
 		averages[a] = wordAvg{
 			Word: guess,
-			Avg:  avg,
+			Avg:  int(math.Ceil(avg)),
 		}
 	}
 

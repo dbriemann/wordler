@@ -1,3 +1,4 @@
 wordler
-bench
-**/*.prof
+bench/bench
+bench/*.txt
+**/*.pprof
