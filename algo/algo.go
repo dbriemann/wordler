@@ -66,7 +66,7 @@ func Remaining(possibles WordSet, source []string) []string {
 
 type wordAvg struct {
 	Word string
-	Avg  int
+	Avg  float64
 }
 
 func Guess(possibles *WordSet, remaining *[]string, attempt int, verbose bool) string {
@@ -118,7 +118,7 @@ func Guess(possibles *WordSet, remaining *[]string, attempt int, verbose bool) s
 		avg /= float64(len(*remaining))
 		averages[a] = wordAvg{
 			Word: guess,
-			Avg:  int(math.Ceil(avg)),
+			Avg:  math.Ceil(avg),
 		}
 	}
 
@@ -126,7 +126,7 @@ func Guess(possibles *WordSet, remaining *[]string, attempt int, verbose bool) s
 		fmt.Printf("AVERAGES: %v\n", averages)
 	}
 
-	lowest := 1000
+	lowest := 1000.0
 	best := ""
 	for _, wa := range averages {
 		if wa.Avg < lowest {
